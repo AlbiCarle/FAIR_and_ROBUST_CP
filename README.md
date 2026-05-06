@@ -30,30 +30,76 @@ Empirical evaluations on real-world datasets demonstrate the effectiveness of th
 
 ## How to Use
 
-The code is organized into multiple components, reflecting the main settings analyzed in the paper.
+All experiments are provided in a single Jupyter notebook: `experiments.ipynb`. 
+The notebook is fully self-contained and allows reproducing both the **natural** and **adversarial** settings described in the paper.
 
-Each dataset folder contains Jupyter Notebooks to reproduce the experiments.
+### Running Experiments
 
-* **NaturalSetting.ipynb**:
-  Runs experiments in the standard (non-adversarial) setting.
-  It evaluates:
+To run the experiments, simply follow these steps:
 
-  * Equalized Coverage
-  * Equalized Set Size
-  * Efficiency of prediction sets
+1.  **Open the notebook:**
+    ```bash
+    jupyter notebook experiments.ipynb
+    ```
 
-  This notebook reproduces the main results of the **natural setting**.
+2.  **Select the desired dataset:**
+    Modifiy the `dataset_name` variable in the configuration cell:
+    ```python
+    dataset_name = "student"
+    ```
+    | Available Datasets | | |
+    | :--- | :--- | :--- |
+    | `adult` | `compas` | `german` |
+    | `student` | `arrhythmia` | `bank` |
 
-* **AdversarialSetting.ipynb**:
-  Runs experiments under adversarial perturbations.
-  It includes:
+3.  **Set the experiment parameters:**
+    ```python
+    alpha = 0.1        # miscoverage level
+    eps = 0.25         # adversarial perturbation strength
+    lambd = 0.6        # fairness-attack trade-off
+    ```
 
-  * Fairness-targeted attacks
-  * Evaluation of fairness degradation
-  * Robust conformal prediction (defense)
+4.  **Run all cells.**
 
-  This notebook reproduces the **adversarial experiments** in the paper.
+---
 
+### What the Notebook Includes
+
+The notebook automatically executes the following pipelines:
+
+#### 1. Natural Setting
+*   Standard conformal prediction evaluation.
+*   **Metrics:** Coverage, Equalized Coverage, and Prediction set size.
+
+#### 2. Adversarial Settings
+*   Fairness-targeted adversarial attacks.
+*   Evaluation under distribution shift.
+*   Robust conformal prediction (defense).
+*   **Scenarios considered:**
+    *   **A1:** Attacks applied uniformly across the population.
+    *   **A2:** Group-targeted attacks.
+
+---
+
+### Outputs
+
+The notebook produces:
+*   **Tables of results:** Detailed coverage and fairness metrics.
+*   **Robustness comparisons:** Performance evaluation with and without defense mechanisms.
+*   **Plots:** Visual representations showing the effect of adversarial perturbations.
+
+> [!TIP]
+> All results reported in the paper can be reproduced directly from this notebook.
+
+---
+
+### Notes
+
+*   **Hardware:** The code automatically detects and uses GPU if available:
+    ```python
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    ```
+*   **Dependencies:** No external fairness or adversarial libraries are required (all methods are implemented natively in this repository).
 ---
 
 ## Libraries Used
