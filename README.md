@@ -39,7 +39,7 @@ To run the experiments, simply follow these steps:
 
 1.  **Open the notebook:**
     ```bash
-    jupyter notebook experiments.ipynb
+    jupyter notebook faircp.ipynb
     ```
 
 2.  **Select the desired dataset:**
