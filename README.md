@@ -30,7 +30,7 @@ Empirical evaluations on real-world datasets demonstrate the effectiveness of th
 
 ## How to Use
 
-All experiments are provided in a single Jupyter notebook: `experiments.ipynb`. 
+All experiments are provided in a single Jupyter notebook: `faircp.ipynb`. 
 The notebook is fully self-contained and allows reproducing both the **natural** and **adversarial** settings described in the paper.
 
 ### Running Experiments
